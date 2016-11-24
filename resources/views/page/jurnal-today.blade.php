@@ -82,9 +82,27 @@
                 <input type="file" name="pic" >
               </div>
             </div>
+
+            <div class="control-group">
+              <label class="control-label">Kelas</label>
+              <div class="controls span11">
+                <select class="" name="kelas_id">
+                  @if(isset($data['info']['edit']))
+                    @foreach($data['data']['kelas'] as $val)
+                      <option value="{{ $val->kelas_id }}" <?php if($val->kelas_id == $data['data']['jurnal_edit']->kelas_id){ echo 'selected'; } ?> >{{ $val->kelas_nama }}</option>
+                    @endforeach
+                  @else
+                    @foreach($data['data']['kelas'] as $val)
+                      <option value="{{ $val->kelas_id }}">{{ $val->kelas_nama }}</option>
+                    @endforeach
+                  @endif
+                </select>
+              </div>
+            </div>
+
             <div class="control-group">
               <label class="control-label">Siswa</label>
-              <div class="controls">
+              <div class="controls span11">
 
                 @if(isset($data['info']['edit']))
                   <select multiple style="height:300px;" name="siswa_id[]">

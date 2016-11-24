@@ -6,25 +6,33 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'siswa'],function(){
-  Route::get('/',                  'SiswaController@index');
-  Route::post('/add',              'SiswaController@create');
-  Route::get('/delete/{siswa_id}', 'SiswaController@destroy');
-  Route::post('/update',           'SiswaController@update');
+  Route::get('/',                       'SiswaController@index');
+  Route::post('/add',                   'SiswaController@create');
+  Route::get('/delete/{siswa_id}',      'SiswaController@destroy');
+  Route::post('/update',                'SiswaController@update');
 });
+
+Route::get('/exportss',      'ExcelController@bulanSekarang');
 
 
 Route::group(['prefix' => 'jurnal'], function(){
-  Route::get('delete/{jurnal_id}','JurnalController@destroy');
-  Route::get('edit/{jurnal_id}',  'JurnalController@edit');
-  Route::post('update',           'JurnalController@update');
+  Route::get('delete/{jurnal_id}',      'JurnalController@destroy');
+  Route::get('edit/{jurnal_id}',        'JurnalController@edit');
+  Route::post('update',                 'JurnalController@update');
+
+  Route::group(['prefix' => 'export'], function(){
+      Route::get('/tahun/{tahun}',      'ExcelController@tahub');
+      Route::get('/bulan/{bulan}',      'ExcelController@bulan');
+      Route::get('/bulan-sekarang',     'ExcelController@bulanSekarang');
+  });
 
   Route::group(['prefix' => '/today'], function(){
-      Route::get('/',              'JurnalTodayController@index');
-      Route::post('/add',          'JurnalTodayController@create');
+      Route::get('/',                  'JurnalTodayController@index');
+      Route::post('/add',              'JurnalTodayController@create');
   });
 
   Route::group(['prefix' => '/bulan'], function(){
-    Route::get('/',                'JurnalBulanController@index');
+    Route::get('/',                    'JurnalBulanController@index');
 
   });
 

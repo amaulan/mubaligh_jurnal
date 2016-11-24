@@ -10,6 +10,7 @@ use Validator;
 
 use App\SiswaModel;
 use App\JurnalModel;
+use App\KelasModel;
 
 class JurnalTodayController extends Controller
 {
@@ -27,6 +28,8 @@ class JurnalTodayController extends Controller
 
     $data['data']['jurnal'] = JurnalModel::whereBetween('tanggal',[$today, $now])->orderBy('tanggal','DESC')->get();
     $data['data']['siswa'] = SiswaModel::all();
+    $data['data']['kelas'] = KelasModel::all();
+
 
     // return $data;
     return view('page.jurnal-today', compact('data'));

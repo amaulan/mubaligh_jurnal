@@ -5,6 +5,7 @@
 
   <div class="row-fluid">
     <div class="span12">
+      <button type="button" class="btn btn-info" name="button">Export to Excel</button>
       <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5>Static table</h5>
@@ -13,46 +14,27 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th>Tanggal</th>
+                  <th>Jurnal</th>
                 </tr>
               </thead>
               <tbody>
+                @foreach($data['data']['jurnal_bulan'] as $index => $val)
+
                 <tr class="odd gradeX">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Win 95+</td>
-                  <td class="center"> 4</td>
-                  <td class="center">X</td>
+                  <td>{{ $index }}</td>
+                  <td>
+
+                        <?php $warna = ['success','important','warning','primary','info','inverse']; $no = 0; ?>
+
+                        @foreach($val as $val2)
+                          <?php $rand = rand(0, count($warna)-1); ?>
+                          <span class="label label-{{ $warna[$rand] }} tip-bottom"  style="padding:5px" da data-original-title="{{ $val2->deskripsi }}">{{ $val2->judul }}</span>
+                        @endforeach
+                  </td>
                 </tr>
-                <tr class="even gradeC">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">5</td>
-                  <td class="center">C</td>
-                </tr>
-                <tr class="odd gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5</td>
-                  <td>Win 95+</td>
-                  <td class="center">5.5</td>
-                  <td class="center">A</td>
-                </tr>
-                <tr class="even gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 6</td>
-                  <td>Win 98+</td>
-                  <td class="center">6</td>
-                  <td class="center">A</td>
-                </tr>
+              @endforeach
+
               </tbody>
             </table>
           </div>
