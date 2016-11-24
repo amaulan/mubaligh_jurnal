@@ -13,6 +13,9 @@ use Validator;
 class SiswaController extends Controller
 {
   public function index(){
+    $data['page']['active'] = 'siswa';
+    $data['page']['title']  = 'Siswa';
+
 
     $data['data']['siswa']  = SiswaModel::orderBy('siswa_id','desc')->get();
 
