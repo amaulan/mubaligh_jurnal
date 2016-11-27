@@ -33,7 +33,13 @@ class JurnalController extends Controller
     $data['page']['title']  = 'Jurnal';
 
     $data['info']['edit']   = TRUE;
-
+    $data['breadcumb']      = [
+        0           => [
+            'icon'    => 'icon-pencil',
+            'link'    => url('/jurnal/today'),
+            'text'    => 'Jurnal Today'
+        ]
+        ];
 
     $today = strtotime(date('d-M-Y ').'00:00:00 -24 hours');
     $now = time();

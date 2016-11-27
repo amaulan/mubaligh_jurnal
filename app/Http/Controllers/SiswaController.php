@@ -16,6 +16,13 @@ class SiswaController extends Controller
     $data['page']['active'] = 'siswa';
     $data['page']['title']  = 'Siswa';
 
+    $data['breadcumb']      = [
+        0           => [
+            'icon'    => 'icon-user',
+            'link'    => url('siswa'),
+            'text'    => 'Siswa'
+        ]
+    ];
 
     $data['data']['siswa']  = SiswaModel::orderBy('siswa_id','desc')->get();
 

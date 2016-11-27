@@ -18,6 +18,14 @@ class JurnalTodayController extends Controller
     $data['page']['active'] = 'jurnal';
     $data['page']['title']  = 'Jurnal Hari ini '.date('d M Y');
 
+    $data['breadcumb']      = [
+      0           => [
+        'icon'    => 'icon-pencil',
+        'link'    => url('jurnal/today'),
+        'text'    => 'Jurnal Today'
+      ]
+    ];
+
     $today = strtotime(date('d-M-Y ').'00:00:00 -24 hours');
     $now = time();
 
