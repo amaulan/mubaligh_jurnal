@@ -8,8 +8,18 @@
 
 
 <script src="{{ url('assets/js/jquery.min.js') }}"></script> 
+
+
 <script src="{{ url('assets/js/jquery.ui.custom.js') }}"></script> 
 <script src="{{ url('assets/js/bootstrap.min.js') }}"></script> 
+<script type="text/javascript">
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+
+
+    $('#{{ $data['page']['active'] }}').addClass('active')
+  })
+</script>
 <script src="{{ url('assets/js/jquery.uniform.js') }}"></script> 
 <script src="{{ url('assets/js/select2.min.js') }}"></script> 
 <script src="{{ url('assets/js/jquery.dataTables.min.js') }}"></script> 
@@ -58,14 +68,7 @@
 <!--<script src="{{ url('assets/js/matrix.popover.js') }}"></script>-->
 
 
-<script type="text/javascript">
-  $(function() {
-    $('[data-toggle="tooltip"]').tooltip();
 
-
-    $('#{{ $data['page']['active'] }}').addClass('active')
-  })
-</script>
 
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to

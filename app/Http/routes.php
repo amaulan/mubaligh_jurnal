@@ -10,6 +10,10 @@ Route::get('/dashboard', function () {
     $data['page']['active'] = 'dashboard';
     $data['page']['title']  = 'Dashboard';
 
+    $data['breadcumb']      = [
+      
+    ];
+
     return view('page.dashboard', compact('data'));
 });
 

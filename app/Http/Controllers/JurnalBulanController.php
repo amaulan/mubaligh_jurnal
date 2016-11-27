@@ -17,6 +17,13 @@ class JurnalBulanController extends Controller
     $data['page']['active']                    = 'jurnal';
     $data['page']['title']                     = 'Jurnal Bulan '.$data['bulan'];
 
+    $data['breadcumb']      = [
+      0           => [
+        'icon'    => 'icon-pencil',
+        'link'    => url('jurnal/bulan'),
+        'text'    => 'Jurnal Bulan ini'
+      ]
+    ];
 
     $now                                       = time();
     $awal_bulan                                = strtotime(date('Y-m-d h:i:s')." -".(date('d')-1).' days');
