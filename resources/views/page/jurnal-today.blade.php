@@ -6,13 +6,15 @@
   @include('errors.notif')
 </div>
 
-@if(isset($data['info']['edit']))
 <div class="row-fluid">
-  <a href="{{ url('jurnal/today') }}" class="btn btn-success">Tulis Jurnal</a>
+  @if(isset($data['info']['edit']))
+    <a href="{{ url('jurnal/today') }}" class="btn btn-success">Tulis Jurnal</a>
+  @endif
+  <a href="{{ url('jurnal/export/today') }}" class="btn btn-info">Export to Excel</a>
 </div>
-@endif
 
 <div class="row-fluid">
+
   <div class="span6">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-file"></i> </span>

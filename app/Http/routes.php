@@ -21,9 +21,10 @@ Route::group(['prefix' => 'jurnal'], function(){
   Route::post('update',                 'JurnalController@update');
 
   Route::group(['prefix' => 'export'], function(){
-      Route::get('/tahun/{tahun}',      'ExcelController@tahub');
-      Route::get('/bulan/{bulan}',      'ExcelController@bulan');
+      Route::get('/today',              'ExcelController@today');
       Route::get('/bulan-sekarang',     'ExcelController@bulanSekarang');
+      Route::get('/{tahun}',            'ExcelController@tahun');
+      Route::get('/{tahun}/{bulan}',    'ExcelController@bulan');
   });
 
   Route::group(['prefix' => '/today'], function(){
@@ -33,7 +34,15 @@ Route::group(['prefix' => 'jurnal'], function(){
 
   Route::group(['prefix' => '/bulan'], function(){
     Route::get('/',                    'JurnalBulanController@index');
+  });
 
+  Route::group(['prefix' => '/all'], function(){
+    Route::get('/',                   'JurnalAllController@tahun');
+  });
+
+  Route::group(['prefix' => 'tahun'], function(){
+    Route::get('/{tahun}',            'JurnalAllController@bulan');
+    Route::get('/{tahun}/{bulan}',    'JurnalAllController@hari');
   });
 
 });

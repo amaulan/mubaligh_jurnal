@@ -7,7 +7,7 @@
         <li><a href="{{ url('jurnal/today') }}"><i class="icon-pencil"></i>Tulis Jurnal</a></li>
         <li class="divider"></li>
         <li><a href="{{ url('jurnal/bulan') }}"><i class="icon-user"></i>Jurnal Bulan Ini</a></li>
-        <li><a href="#"><i class="icon-check"></i>Jurnal Semua</a></li>
+        <li><a href="{{ url('jurnal/all') }}"><i class="icon-check"></i>Jurnal Semua</a></li>
 
       </ul>
     </li>

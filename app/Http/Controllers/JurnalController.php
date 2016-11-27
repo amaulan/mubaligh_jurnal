@@ -34,6 +34,7 @@ class JurnalController extends Controller
 
     $data['info']['edit']   = TRUE;
 
+
     $today = strtotime(date('d-M-Y ').'00:00:00 -24 hours');
     $now = time();
 
@@ -42,8 +43,12 @@ class JurnalController extends Controller
     // echo date('y-m-d H:i:s',strtotime($data['today']));
 
 
+    $awal_hari  = strtotime(date('Y-m-d ',$now).' 00:00:01');
+    $akhir_hari = strtotime(date('Y-m-d H:i:s', $awal_hari).' +24 hours');
+
+
     $data['data']['jurnal_edit'] = JurnalModel::find($jurnal_id);
-    $data['data']['jurnal'] = JurnalModel::whereBetween('tanggal',[$today, $now])->orderBy('tanggal','DESC')->get();
+    $data['data']['jurnal'] = JurnalModel::whereBetween('tanggal',[$awal_hari, $akhir_hari])->orderBy('tanggal','DESC')->get();
     $data['data']['siswa'] = SiswaModel::all();
     $data['data']['kelas'] = KelasModel::all();
 
@@ -73,6 +78,102 @@ class JurnalController extends Controller
     JurnalModel::find($data['jurnal_id'])->update($data);
 
     return \Redirect::to('jurnal/today')->with('sc_msg','Berhasil Mengedit Jurnal');
+  }
+
+
+  public static function day2hari($day){
+    switch ($day) {
+      case 'Sun':
+        return 'Minggu';
+        break;
+
+      case 'Mon':
+        return 'Senin';
+        break;
+
+      case 'Tue':
+        return 'Selasa';
+        break;
+
+      case 'Wed':
+        return 'Rabu';
+        break;
+
+      case 'Thu':
+        return 'Kamis';
+        break;
+
+      case 'Fri':
+        return 'Jumat';
+        break;
+
+      case 'Sat':
+        return 'Sabtu';
+        break;
+
+      default:
+        return FALSE;
+        break;
+    }
+  }
+
+  public static function bulan2str($bulan_int)
+  {
+    switch($bulan_int){
+
+      case '1':
+        return 'Januari';
+        break;
+
+      case '2':
+        return 'Februari';
+        break;
+
+      case '3':
+        return 'Maret';
+        break;
+
+      case '4':
+        return 'April';
+        break;
+
+      case '5':
+        return 'Mei';
+        break;
+
+      case '6':
+        return 'Juni';
+        break;
+
+      case '7':
+        return 'Juli';
+        break;
+
+      case '8':
+        return 'Agustus';
+        break;
+
+      case '9':
+        return 'September';
+        break;
+
+      case '10':
+        return 'Oktober';
+        break;
+
+      case '11':
+        return 'November';
+        break;
+
+      case '12':
+        return 'Desember';
+        break;
+
+      default:
+        return FALSE;
+        break;
+
+    }
   }
 
 }

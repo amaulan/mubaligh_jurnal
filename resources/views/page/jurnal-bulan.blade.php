@@ -5,10 +5,14 @@
 
   <div class="row-fluid">
     <div class="span12">
-      <button type="button" class="btn btn-info" name="button">Export to Excel</button>
+      @if(isset($data['bulan_sekarang']))
+        <a href="{{ url('/jurnal/export/bulan-sekarang') }}" type="button" class="btn btn-info" name="button">Export to Excel</a>
+      @else
+        <a href="{{ url('/jurnal/export/'.$data['tahun_self'].'/'.$data['bulan_self']) }}" type="button" class="btn btn-info" name="button">Export to Excel</a>
+      @endif
       <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5>Static table</h5>
+            <h5>Rekap Jurnal Bulan {{ $data['bulan'] }}</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered table-striped">

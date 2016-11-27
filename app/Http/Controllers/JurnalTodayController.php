@@ -16,7 +16,7 @@ class JurnalTodayController extends Controller
 {
   public function index(){
     $data['page']['active'] = 'jurnal';
-    $data['page']['title']  = 'Jurnal';
+    $data['page']['title']  = 'Jurnal Hari ini '.date('d M Y');
 
     $today = strtotime(date('d-M-Y ').'00:00:00 -24 hours');
     $now = time();
@@ -26,7 +26,12 @@ class JurnalTodayController extends Controller
     // echo date('y-m-d H:i:s',strtotime($data['today']));
 
 
-    $data['data']['jurnal'] = JurnalModel::whereBetween('tanggal',[$today, $now])->orderBy('tanggal','DESC')->get();
+
+    $awal_hari  = strtotime(date('Y-m-d ',$now).' 00:00:01');
+    $akhir_hari = strtotime(date('Y-m-d H:i:s', $awal_hari).' +24 hours');
+
+
+    $data['data']['jurnal'] = JurnalModel::whereBetween('tanggal',[$awal_hari, $akhir_hari])->orderBy('tanggal','DESC')->get();
     $data['data']['siswa'] = SiswaModel::all();
     $data['data']['kelas'] = KelasModel::all();
 

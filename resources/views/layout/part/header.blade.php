@@ -17,6 +17,6 @@
 
   <!--Header-part-->
   <div id="header">
-    <h1><a href="dashboard.html">Jurnal</a></h1>
+    <h1>Jurnal</h1>
   </div>
   <!--close-Header-part-->
