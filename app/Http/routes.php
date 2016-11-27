@@ -1,9 +1,25 @@
 <?php
 
-
-Route::get('/', function () {
-    return view('layout.main');
+Route::get('/', function(){
+  return Redirect::to('dashboard');
 });
+
+
+Route::get('/dashboard', function () {
+
+    $data['page']['active'] = 'dashboard';
+    $data['page']['title']  = 'Dashboard';
+
+    return view('page.dashboard', compact('data'));
+});
+
+Route::group(['prefix' => 'profil'], function(){
+  Route::get('/',                       'ProfilController@index');
+  Route::post('/add',                   'ProfilController@create');
+  Route::get('/delete/{kelas_id}',      'ProfilController@destroy');
+  Route::post('/update',                'ProfilController@update');  
+});
+
 
 Route::group(['prefix' => 'kelas'], function(){
   Route::get('/',                       'KelasController@index');

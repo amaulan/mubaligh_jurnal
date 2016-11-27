@@ -15,7 +15,7 @@
             <h5>Rekap Jurnal Bulan {{ $data['bulan'] }}</h5>
           </div>
           <div class="widget-content nopadding">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped data-table">
               <thead>
                 <tr>
                   <th>Tanggal</th>

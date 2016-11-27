@@ -20,7 +20,7 @@
             <h5>Rekap Jurnal Pertahun</h5>
           </div>
           <div class="widget-content nopadding">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered data-table">
               <thead>
                 <tr>
                   <th>Tahun</th>

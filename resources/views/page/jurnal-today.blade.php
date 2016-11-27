@@ -87,7 +87,7 @@
 
             <div class="control-group">
               <label class="control-label">Kelas</label>
-              <div class="controls span11">
+              <div class="controls">
                 <select class="" name="kelas_id">
                   @if(isset($data['info']['edit']))
                     @foreach($data['data']['kelas'] as $val)
@@ -104,7 +104,7 @@
 
             <div class="control-group">
               <label class="control-label">Siswa</label>
-              <div class="controls span11">
+              <div class="controls">
 
                 @if(isset($data['info']['edit']))
                   <select multiple style="height:300px;" name="siswa_id[]">

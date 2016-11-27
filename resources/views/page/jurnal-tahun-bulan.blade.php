@@ -19,7 +19,7 @@
             <h5>Rekap Jurnal Bulanan Tahun {{ $data['tahun'] }}</h5>
           </div>
           <div class="widget-content nopadding">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered data-table">
               <thead>
                 <tr>
                   <th>Bulan</th>
