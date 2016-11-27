@@ -4,24 +4,16 @@
 @section('content')
 <div class="row-fluid">
   <div class="span12">
+  <a title="" id="example" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-placement="top" data-toggle="popover" class="btn btn-success" href="" data-original-title="Popover on top">Popover on top</a>
 
     @include('errors.notif')
 
 
-    <div class="btn-group">
-              <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">Kelas <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="#">1</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">1</a></li>
-              </ul>
-    </div>
     <button class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-tambah">Tambah Siswa</button>
     <br><br>
     <div class="widget-box">
       <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-        <h5>Static table</h5>
+        <h5>Data Siswa</h5>
       </div>
       <div class="widget-content nopadding">
         <table class="table table-bordered table-striped data-table">

@@ -8,14 +8,14 @@
         <li class="divider"></li>
         <li><a href="{{ url('jurnal/bulan') }}"><i class="icon-user"></i>Jurnal Bulan Ini</a></li>
         <li><a href="{{ url('jurnal/all') }}"><i class="icon-check"></i>Jurnal Semua</a></li>
-
       </ul>
     </li>
 
     @endif
-    <ul class="nav navbar-nav navbar-right  ">
-      <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
-    </ul>
+
   </ul>
 </div>
+  <div id="search">
+      <a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a>
+  </div>
 <!--close-top-Header-menu-->
