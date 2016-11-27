@@ -5,6 +5,13 @@ Route::get('/', function () {
     return view('layout.main');
 });
 
+Route::group(['prefix' => 'kelas'], function(){
+  Route::get('/',                       'KelasController@index');
+  Route::post('/add',                   'KelasController@create');
+  Route::get('/delete/{kelas_id}',      'KelasController@destroy');
+  Route::post('/update',                'KelasController@update');
+});
+
 Route::group(['prefix' => 'siswa'],function(){
   Route::get('/',                       'SiswaController@index');
   Route::post('/add',                   'SiswaController@create');
