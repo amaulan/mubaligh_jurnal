@@ -4,7 +4,6 @@
 @section('content')
 <div class="row-fluid">
   <div class="span12">
-  <a title="" id="example" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-placement="top" data-toggle="popover" class="btn btn-success" href="" data-original-title="Popover on top">Popover on top</a>
 
     @include('errors.notif')
 
