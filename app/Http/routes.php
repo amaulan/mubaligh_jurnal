@@ -17,6 +17,10 @@ Route::get('/dashboard', function () {
     return view('page.dashboard', compact('data'));
 });
 
+Route::group(['prefix' => 'about'], function(){
+  Route::get('/',                       'AboutController@index');
+});
+
 Route::group(['prefix' => 'profil'], function(){
   Route::get('/',                       'ProfilController@index');
   Route::post('/add',                   'ProfilController@create');

@@ -62,7 +62,7 @@ class ExcelController extends Controller
             'JURNAL'         => $value2->judul,
             'DESKRIPSI'      => $value2->deskripsi,
             'KELAS'          => KelasModel::find($value2->kelas_id)->kelas_nama,
-            'JUMLAH_SISWA'   => SiswaModel::whereIn('siswa_id',json_decode($value2->kehadiran,TRUE))->count()
+            'JUMLAH_SISWA'   => count(json_decode($value2->kehadiran,TRUE))
           ];
 
         }
@@ -112,7 +112,7 @@ class ExcelController extends Controller
             'JURNAL'         => $value2->judul,
             'DESKRIPSI'      => $value2->deskripsi,
             'KELAS'          => KelasModel::find($value2->kelas_id)->kelas_nama,
-            'JUMLAH_SISWA'   => SiswaModel::whereIn('siswa_id',json_decode($value2->kehadiran,TRUE))->count()
+            'JUMLAH_SISWA'   => count(json_decode($value2->kehadiran,TRUE))
           ];
 
         }
@@ -160,7 +160,7 @@ class ExcelController extends Controller
             'JURNAL'         => $value2->judul,
             'DESKRIPSI'      => $value2->deskripsi,
             'KELAS'          => KelasModel::find($value2->kelas_id)->kelas_nama,
-            'JUMLAH_SISWA'   => SiswaModel::whereIn('siswa_id',json_decode($value2->kehadiran,TRUE))->count()
+            'JUMLAH_SISWA'   => count(json_decode($value2->kehadiran,TRUE))
           ];
 
         }
@@ -208,7 +208,7 @@ class ExcelController extends Controller
         'JURNAL'         => $value2->judul,
         'DESKRIPSI'      => $value2->deskripsi,
         'KELAS'          => KelasModel::find($value2->kelas_id)->kelas_nama,
-        'JUMLAH_SISWA'   => SiswaModel::whereIn('siswa_id',json_decode($value2->kehadiran,TRUE))->count()
+        'JUMLAH_SISWA'   => count(json_decode($value2->kehadiran,TRUE))
       ];
     }
 
