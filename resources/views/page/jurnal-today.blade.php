@@ -77,27 +77,11 @@
           <label class="control-label">Pic</label>
           <div class="controls">
             <input type="file" name="file" id="profile-img">
-            <img src="" id="profile-img-tag" width="150px" />
-            <script type="text/javascript">
-            function readURL(input) {
-            if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-            $('#profile-img-tag').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-            }
-            }
-            $("#profile-img").change(function(){
-            readURL(this);
-            });
-            </script>
           </div>
         </div>
         <div class="control-group">
           <label class="control-label">Kelas</label>
-          <div class="controls span11">
+          <div class="controls">
             <select class="" name="kelas_id">
               @if(isset($data['info']['edit']))
               @foreach($data['data']['kelas'] as $val)
@@ -113,7 +97,7 @@
         </div>
         <div class="control-group">
           <label class="control-label">Siswa</label>
-          <div class="controls span11">
+          <div class="controls">
             @if(isset($data['info']['edit']))
             <select multiple style="height:300px;" name="siswa_id[]">
               @foreach($data['data']['siswa'] as $val)
