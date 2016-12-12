@@ -51,6 +51,7 @@ Route::get('/exportss',      'ExcelController@bulanSekarang');
 
 
 Route::group(['prefix' => 'jurnal'], function(){
+  Route::get('detail/{jurnal_id}',      'JurnalController@detail');
   Route::get('delete/{jurnal_id}',      'JurnalController@destroy');
   Route::get('edit/{jurnal_id}',        'JurnalController@edit');
   Route::post('update',                 'JurnalController@update');
