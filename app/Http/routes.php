@@ -10,14 +10,26 @@ Route::get('/dashboard', function () {
     $data['page']['active'] = 'dashboard';
     $data['page']['title']  = 'Dashboard';
 
+    $data['breadcumb']      = [
+
+    ];
+
     return view('page.dashboard', compact('data'));
+});
+
+Route::group(['prefix' => 'galeri'], function(){
+  Route::get('/',                       'GaleriController@index');
+});
+
+Route::group(['prefix' => 'about'], function(){
+  Route::get('/',                       'AboutController@index');
 });
 
 Route::group(['prefix' => 'profil'], function(){
   Route::get('/',                       'ProfilController@index');
   Route::post('/add',                   'ProfilController@create');
   Route::get('/delete/{kelas_id}',      'ProfilController@destroy');
-  Route::post('/update',                'ProfilController@update');  
+  Route::post('/update',                'ProfilController@update');
 });
 
 
@@ -39,6 +51,7 @@ Route::get('/exportss',      'ExcelController@bulanSekarang');
 
 
 Route::group(['prefix' => 'jurnal'], function(){
+  Route::get('detail/{jurnal_id}',      'JurnalController@detail');
   Route::get('delete/{jurnal_id}',      'JurnalController@destroy');
   Route::get('edit/{jurnal_id}',        'JurnalController@edit');
   Route::post('update',                 'JurnalController@update');

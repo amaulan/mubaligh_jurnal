@@ -33,7 +33,13 @@ class JurnalController extends Controller
     $data['page']['title']  = 'Jurnal';
 
     $data['info']['edit']   = TRUE;
-
+    $data['breadcumb']      = [
+        0           => [
+            'icon'    => 'icon-pencil',
+            'link'    => url('/jurnal/today'),
+            'text'    => 'Jurnal Today'
+        ]
+        ];
 
     $today = strtotime(date('d-M-Y ').'00:00:00 -24 hours');
     $now = time();
@@ -80,6 +86,12 @@ class JurnalController extends Controller
     return \Redirect::to('jurnal/today')->with('sc_msg','Berhasil Mengedit Jurnal');
   }
 
+  public function detail($jurnal_id)
+  {
+    $data['jurnal'] = JurnalModel::find($jurnal_id);
+
+    return $data;
+  }
 
   public static function day2hari($day){
     switch ($day) {

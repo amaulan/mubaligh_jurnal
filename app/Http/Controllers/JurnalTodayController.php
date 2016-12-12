@@ -18,6 +18,14 @@ class JurnalTodayController extends Controller
     $data['page']['active'] = 'jurnal';
     $data['page']['title']  = 'Jurnal Hari ini '.date('d M Y');
 
+    $data['breadcumb']      = [
+      0           => [
+        'icon'    => 'icon-pencil',
+        'link'    => url('jurnal/today'),
+        'text'    => 'Jurnal Today'
+      ]
+    ];
+
     $today = strtotime(date('d-M-Y ').'00:00:00 -24 hours');
     $now = time();
 
@@ -43,6 +51,7 @@ class JurnalTodayController extends Controller
   public function create(Request $request){
     $data = $request->all();
 
+
     $validasi = Validator::make($data, [
       'judul'       => 'required|min:5',
       'deskripsi'   => 'required|min:10',
@@ -53,8 +62,21 @@ class JurnalTodayController extends Controller
         return \Redirect::to('jurnal/today')->with('err_msg',$validasi->errors()->all());
     }
 
-    $data['tanggal']  = time();
-    $data['kehadiran'] = json_encode($data['siswa_id']);
+    // FIle Upload
+    $filename = [];
+    $no = 1;
+    foreach ($request->file('file') as $key => $value) {
+      $extensi    = $value->getClientOriginalExtension();
+      $name       = 'photo_'.sha1('y-m-d h:i:s').$no.'.'.$extensi;
+      $filename[] = $name;
+      $value->move(public_path().'/upload', $name);
+      $no++;
+    }
+
+
+    $data['tanggal']    = time();
+    $data['kehadiran']  = json_encode($data['siswa_id']);
+    $data['pic']        = json_encode($filename);
     unset($data['siswa_id']);
 
     JurnalModel::create($data);

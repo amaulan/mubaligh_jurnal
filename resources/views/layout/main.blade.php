@@ -9,8 +9,10 @@
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb">
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-user"></i> Siswa</a>
+      <a href="{{ url('/') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+      @foreach($data['breadcumb'] as $bread)
+        <a href="{{ $bread['link'] }}" title="" class="tip-bottom"><i class="{{ $bread['icon'] }}"></i>{{ $bread['text'] }}</a>
+      @endforeach
     </div>
     <h1>{{ $data['page']['title'] }}</h1>
   </div>

@@ -17,6 +17,13 @@ class KelasController extends Controller
         $data['page']['active'] = 'kelas';
         $data['page']['title']  = 'Kelas';
 
+        $data['breadcumb']      = [
+            0           => [
+                'icon'    => 'icon-user',
+                'link'    => url('kelas'),
+                'text'    => 'Kelas'
+            ]
+        ];
 
         $data['data']['kelas']  = KelasModel::orderBy('kelas_id','desc')->get();
 

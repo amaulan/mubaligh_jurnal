@@ -18,6 +18,13 @@ class JurnalAllController extends Controller
     $data['page']['active']     = 'jurnal';
     $data['page']['title']      = 'Jurnal Tahunan';
 
+    $data['breadcumb']      = [
+      0           => [
+        'icon'    => 'icon-pencil',
+        'link'    => url('jurnal/all/'),
+        'text'    => 'Jurnal Tahunan'
+      ]
+    ];
 
     $get_max_tanggal            = JurnalModel::select('tanggal')->get()->max();
     $get_min_tanggal            = JurnalModel::select('tanggal')->get()->min();
@@ -44,6 +51,19 @@ class JurnalAllController extends Controller
     $data['page']['title']      = 'Jurnal';
 
     $data['tahun']              = $tahun;
+
+    $data['breadcumb']      = [
+      0           => [
+        'icon'    => 'icon-pencil',
+        'link'    => url('jurnal/all/'),
+        'text'    => 'Jurnal Tahunan'
+      ],
+      1           => [
+        'icon'    => 'icon-calendar',
+        'link'    => url('jurnal/tahun/'.$tahun),
+        'text'    => $tahun
+      ]
+    ];
 
     $awal_tahun                 = strtotime($tahun.'-01-01 00:00:01');
     $akhir_tahun                = strtotime($tahun.'-12-30 23:59:59');
@@ -117,6 +137,25 @@ class JurnalAllController extends Controller
     $data['bulan']                             = \App\Http\Controllers\JurnalController::bulan2str($bulan).' '.$tahun;
     $data['bulan_self']                        = $bulan;
     $data['tahun_self']                        = $tahun;   
+
+    $data['breadcumb']      = [
+      0           => [
+        'icon'    => 'icon-pencil',
+        'link'    => url('jurnal/all/'),
+        'text'    => 'Jurnal Tahunan'
+      ],
+      1           => [
+        'icon'    => 'icon-calendar',
+        'link'    => url('jurnal/tahun/'.$tahun),
+        'text'    => $tahun
+      ],
+      2           => [
+        'icon'    => 'icon-calendar',
+        'link'    => url('jurnal/tahun/'.$tahun.'/'.$bulan),
+        'text'    => \App\Http\Controllers\JurnalController::bulan2str($bulan)
+      ]
+    ];
+
 
     $now                                       = time();
     // $awal_bulan                                = strtotime(date('Y-m-d h:i:s')." -".(date('d')-1).' days');

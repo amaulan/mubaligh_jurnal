@@ -33,7 +33,7 @@
 
                         @foreach($val as $val2)
                           <?php $rand = rand(0, count($warna)-1); ?>
-                          <span class="label label-{{ $warna[$rand] }} tip-bottom"  style="padding:5px" da data-original-title="{{ $val2->deskripsi }}">{{ $val2->judul }}</span>
+                          <a href="{{ url('jurnal/edit/'.$val2->jurnal_id) }}" class="label label-{{ $warna[$rand] }} tip-bottom"  style="padding:5px" da data-original-title="{{ $val2->deskripsi }}">{{ $val2->judul }}</a>
                         @endforeach
                   </td>
                 </tr>
