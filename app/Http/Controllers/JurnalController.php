@@ -86,6 +86,12 @@ class JurnalController extends Controller
     return \Redirect::to('jurnal/today')->with('sc_msg','Berhasil Mengedit Jurnal');
   }
 
+  public function detail($jurnal_id)
+  {
+    $data['jurnal'] = JurnalModel::find($jurnal_id);
+
+    return $data;
+  }
 
   public static function day2hari($day){
     switch ($day) {
