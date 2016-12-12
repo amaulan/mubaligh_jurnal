@@ -11,10 +11,14 @@ Route::get('/dashboard', function () {
     $data['page']['title']  = 'Dashboard';
 
     $data['breadcumb']      = [
-      
+
     ];
 
     return view('page.dashboard', compact('data'));
+});
+
+Route::group(['prefix' => 'galeri'], function(){
+  Route::get('/',                       'GaleriController@index');
 });
 
 Route::group(['prefix' => 'about'], function(){
@@ -25,7 +29,7 @@ Route::group(['prefix' => 'profil'], function(){
   Route::get('/',                       'ProfilController@index');
   Route::post('/add',                   'ProfilController@create');
   Route::get('/delete/{kelas_id}',      'ProfilController@destroy');
-  Route::post('/update',                'ProfilController@update');  
+  Route::post('/update',                'ProfilController@update');
 });
 
 
