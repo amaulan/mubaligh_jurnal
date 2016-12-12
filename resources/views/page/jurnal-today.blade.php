@@ -108,13 +108,13 @@
             @endif
           </div>
         </div>
-        <div class="control-group" for="image-upload">
+        {{-- <div class="control-group" for="image-upload">
           <label class="control-label">Pic</label>
           <div class="controls">
             <input type="file" id="profil-img" name="file[]" accept="image/*" multiple=""/><br/>
   					<div id="image-preview"></div>
           </div>
-        </div>
+        </div> --}}
         <div class="form-actions">
           <button type="submit" class="btn btn-success">Save</button>
         </div>
