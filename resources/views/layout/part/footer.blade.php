@@ -7,25 +7,41 @@
 </div>
 
 
-<script src="{{ url('assets/js/jquery.min.js') }}"></script> 
+<script src="{{ url('assets/js/jquery.min.js') }}"></script>
+<script src="{{ url('assets/js/bower_components/jquery-image-reader/jquery.imagereader-1.1.0.min.js') }}"></script>
 
 
-<script src="{{ url('assets/js/jquery.ui.custom.js') }}"></script> 
-<script src="{{ url('assets/js/bootstrap.min.js') }}"></script> 
+<script src="{{ url('assets/js/jquery.ui.custom.js') }}"></script>
+<script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript">
   $(function() {
     $('[data-toggle="tooltip"]').tooltip();
 
 
     $('#{{ $data['page']['active'] }}').addClass('active')
+
+    // With config and callback
+		$('#profil-img').imageReader({
+		  destination: '#image-preview',
+		  onload: function(img) {
+		        // your callback code
+		        $(img).css({
+		        	'margin-top' : '20px',
+              'margin-right' : '20px',
+		        	'max-width'		 : '100%',
+		        	"max-height"	 : '700px'
+		        });
+		    }
+		});
+
   })
 </script>
-<script src="{{ url('assets/js/jquery.uniform.js') }}"></script> 
-<script src="{{ url('assets/js/select2.min.js') }}"></script> 
-<script src="{{ url('assets/js/jquery.dataTables.min.js') }}"></script> 
-<script src="{{ url('assets/js/matrix.js') }}"></script> 
+<script src="{{ url('assets/js/jquery.uniform.js') }}"></script>
+<script src="{{ url('assets/js/select2.min.js') }}"></script>
+<script src="{{ url('assets/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('assets/js/matrix.js') }}"></script>
 <script src="{{ url('assets/js/matrix.tables.js') }}"></script>
-<script src="{{ url('assets/js/matrix.interface.js') }}"></script> 
+<script src="{{ url('assets/js/matrix.interface.js') }}"></script>
 <script src="{{ url('assets/js/matrix.popover.js') }}"></script>
 
 
