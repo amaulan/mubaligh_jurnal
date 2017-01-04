@@ -13,6 +13,7 @@
 
 <script src="{{ url('assets/js/jquery.ui.custom.js') }}"></script>
 <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ url('assets/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript">
   $(function() {
     $('[data-toggle="tooltip"]').tooltip();
