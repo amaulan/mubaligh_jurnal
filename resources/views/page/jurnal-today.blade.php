@@ -1,111 +1,125 @@
 @extends('layout.main')
-
-
+<script src="../assets/jquerypic.js"></script>
 @section('content')
 <div class="row-fluid">
+  @include('errors.notif')
+</div>
+@if(isset($data['info']['edit']))
+<div class="row-fluid">
+  @if(isset($data['info']['edit']))
+    <a href="{{ url('jurnal/today') }}" class="btn btn-success">Tulis Jurnal</a>
+  @endif
+  <a href="{{ url('jurnal/export/today') }}" class="btn btn-info">Export to Excel</a>
+</div>
+@endif
+<div class="row-fluid">
+
   <div class="span6">
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-file"></i> </span>
-            <h5>Recent Posts</h5>
+    <div class="widget-box">
+      <div class="widget-title"> <span class="icon"> <i class="icon-file"></i> </span>
+      <h5>Jurnal Hari Ini</h5>
+    </div>
+    <div class="widget-content nopadding">
+      <ul class="recent-posts">
+        @foreach($data['data']['jurnal'] as $val)
+        <li>
+          <div class="user-thumb" style="background:transparent !important"> <span class="label label-warning"><strong>{{ date('H:i', $val->tanggal) }}</strong></span>
+        </div>
+        <div class="article-post">
+          <div class="fr">
+            <a href="{{ url('jurnal/edit/'.$val->jurnal_id) }}" class="btn btn-primary btn-mini">Edit</a>
+            <a onclick="return confirm('Yakin Menghapus ?')" href="{{ url('jurnal/delete/'.$val->jurnal_id) }}" class="btn btn-danger btn-mini">Delete</a></div>
+            <span class="user-info"><strong>{{ $val->judul }}</strong></span>
+            <p><a href="#">{{ $val->deskripsi }}</a> </p>
           </div>
-          <div class="widget-content nopadding">
-            <ul class="recent-posts">
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
-                <div class="article-post">
-                  <div class="fr"><a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Publish</a> <a href="#" class="btn btn-danger btn-mini">Delete</a></div>
-                  <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
-                </div>
-              </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
-                <div class="article-post">
-                  <div class="fr"><a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Publish</a> <a href="#" class="btn btn-danger btn-mini">Delete</a></div>
-                  <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
-                </div>
-              </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av3.jpg"> </div>
-                <div class="article-post">
-                  <div class="fr"><a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Publish</a> <a href="#" class="btn btn-danger btn-mini">Delete</a></div>
-                  <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.Itaffle to pad out the comment.</a> </p>
-                </div>
-              </li><li>
-                <button class="btn btn-warning btn-mini">View All</button>
-              </li>
-            </ul>
+        </li>
+        @endforeach
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="span6">
+  <div class="widget-box">
+    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+    <h5>Tulis Jurnal</h5>
+  </div>
+  <div class="widget-content nopadding">
+    @if(isset($data['info']['edit']))
+    <form action="{{ url('jurnal/update') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+      @else
+      <form action="{{ url('jurnal/today/add') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+        @endif
+        {{ csrf_field() }}
+        @if(isset($data['info']['edit']))
+        <input type="hidden" name="jurnal_id" value="{{ $data['data']['jurnal_edit']->jurnal_id }}">
+        @endif
+        <div class="control-group">
+          <label class="control-label">Judul :</label>
+          <div class="controls">
+            @if(isset($data['info']['edit']))
+            <input type="text" name="judul" class="span11" value="{{ $data['data']['jurnal_edit']->judul }}" >
+            @else
+            <input type="text" name="judul" class="span11" value="" >
+            @endif
           </div>
         </div>
-        <div class="accordion" id="collapse-group">
-          <div class="accordion-group widget-box">
-            <div class="accordion-heading">
-              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-ok"></i></span>
-                <h5>Accordion option1</h5>
-                </a> </div>
-            </div>
-            <div class="collapse in accordion-body" id="collapseGOne">
-              <div class="widget-content"> This is opened by default </div>
-            </div>
-          </div>
-          <div class="accordion-group widget-box">
-            <div class="accordion-heading">
-              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGTwo" data-toggle="collapse"> <span class="icon"><i class="icon-circle-arrow-right"></i></span>
-                <h5>Accordion closed</h5>
-                </a> </div>
-            </div>
-            <div class="collapse accordion-body" id="collapseGTwo">
-              <div class="widget-content"> Another is open </div>
-            </div>
-          </div>
-          <div class="accordion-group widget-box">
-            <div class="accordion-heading">
-              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGThree" data-toggle="collapse"> <span class="icon"><i class="icon-eye-open"></i></span>
-                <h5>Accordion closed</h5>
-                </a> </div>
-            </div>
-            <div class="collapse accordion-body" id="collapseGThree">
-              <div class="widget-content"> Another is open </div>
-            </div>
+        <div class="control-group">
+          <label class="control-label">Deskripsi :</label>
+          <div class="controls">
+            @if(isset($data['info']['edit']))
+            <textarea name="deskripsi" rows="8" cols="40" class="span11">{{ $data['data']['jurnal_edit']->deskripsi }}</textarea>
+            @else
+            <textarea name="deskripsi" rows="8" cols="40" class="span11"></textarea>
+            @endif
           </div>
         </div>
-        <div class="widget-box collapsible">
-          <div class="widget-title"> <a href="#collapseOne" data-toggle="collapse"> <span class="icon"><i class="icon-arrow-right"></i></span>
-            <h5>Toggle, Open by default</h5>
-            </a> </div>
-          <div class="collapse in" id="collapseOne">
-            <div class="widget-content"> This box is opened by default </div>
-          </div>
-          <div class="widget-title"> <a href="#collapseTwo" data-toggle="collapse"> <span class="icon"><i class="icon-remove"></i></span>
-            <h5>Toggle, closed by default</h5>
-            </a> </div>
-          <div class="collapse" id="collapseTwo">
-            <div class="widget-content"> This box is now open </div>
-          </div>
-          <div class="widget-title"> <a href="#collapseThree" data-toggle="collapse"> <span class="icon"><i class="icon-remove"></i></span>
-            <h5>Toggle, closed by default</h5>
-            </a> </div>
-          <div class="collapse" id="collapseThree">
-            <div class="widget-content"> This box is now open </div>
+
+        <div class="control-group">
+          <label class="control-label">Kelas</label>
+          <div class="controls">
+            <select class="" name="kelas_id">
+              @if(isset($data['info']['edit']))
+              @foreach($data['data']['kelas'] as $val)
+              <option value="{{ $val->kelas_id }}" <?php if($val->kelas_id == $data['data']['jurnal_edit']->kelas_id){ echo 'selected'; } ?> >{{ $val->kelas_nama }}</option>
+              @endforeach
+              @else
+              @foreach($data['data']['kelas'] as $val)
+              <option value="{{ $val->kelas_id }}">{{ $val->kelas_nama }}</option>
+              @endforeach
+              @endif
+            </select>
           </div>
         </div>
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-refresh"></i> </span>
-            <h5>News updates</h5>
-          </div>
-          <div class="widget-content nopadding updates">
-            <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a href="#" title=""><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong></a> <span>dolor sit amet, consectetur adipiscing eli</span> </div>
-              <div class="update-date"><span class="update-day">20</span>jan</div>
-            </div>
-            <div class="new-update clearfix"> <i class="icon-gift"></i> <span class="update-notice"> <a href="#" title=""><strong>Congratulation Maruti, Happy Birthday </strong></a> <span>many many happy returns of the day</span> </span> <span class="update-date"><span class="update-day">11</span>jan</span> </div>
-            <div class="new-update clearfix"> <i class="icon-move"></i> <span class="update-alert"> <a href="#" title=""><strong>Maruti is a Responsive Admin theme</strong></a> <span>But already everything was solved. It will ...</span> </span> <span class="update-date"><span class="update-day">07</span>Jan</span> </div>
-            <div class="new-update clearfix"> <i class="icon-leaf"></i> <span class="update-done"> <a href="#" title=""><strong>Envato approved Maruti Admin template</strong></a> <span>i am very happy to approved by TF</span> </span> <span class="update-date"><span class="update-day">05</span>jan</span> </div>
-            <div class="new-update clearfix"> <i class="icon-question-sign"></i> <span class="update-notice"> <a href="#" title=""><strong>I am alwayse here if you have any question</strong></a> <span>we glad that you choose our template</span> </span> <span class="update-date"><span class="update-day">01</span>jan</span> </div>
+        <div class="control-group">
+          <label class="control-label">Siswa</label>
+          <div class="controls">
+            @if(isset($data['info']['edit']))
+            <select multiple style="height:300px;" name="siswa_id[]">
+              @foreach($data['data']['siswa'] as $val)
+              <option value="{{ $val->siswa_id }}" <?php if(in_array($val->siswa_id,json_decode($data['data']['jurnal_edit']->kehadiran,TRUE))){ echo 'selected'; } ?>>{{ $val->siswa_nama }}</option>
+              @endforeach
+            </select>
+            @else
+            <select multiple style="height:300px;" name="siswa_id[]">
+              @foreach($data['data']['siswa'] as $val)
+              <option value="{{ $val->siswa_id }}" >{{ $val->siswa_nama }}</option>
+              @endforeach
+            </select>
+            @endif
           </div>
         </div>
-      </div>
+        {{-- <div class="control-group" for="image-upload">
+          <label class="control-label">Pic</label>
+          <div class="controls">
+            <input type="file" id="profil-img" name="file[]" accept="image/*" multiple=""/><br/>
+  					<div id="image-preview"></div>
+          </div>
+        </div> --}}
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 @endsection
